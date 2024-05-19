@@ -1,19 +1,17 @@
 import { FC } from "react";
-import { IPokemon } from "../types/PokemonType";
+import { IPokemonResponceDetails } from "../types/PokemonType";
 import PokemonItem from "./PokemonItem";
 
 interface IPokemons {
-  pokemons: IPokemon[];
+  pokemonsDetails: IPokemonResponceDetails[];
+  onSelectedPokemon: (pokemon: IPokemonResponceDetails) => void;
 }
 
-const Pokemons: FC<IPokemons> = ({ pokemons }) => {
+const Pokemons: FC<IPokemons> = ({ pokemonsDetails, onSelectedPokemon }) => {
   return (
     <ul className="grid grid-cols-[1fr_1fr] gap-4">
-      {pokemons.map((pokemon) => (
-        <PokemonItem
-          key={pokemon.name}
-          pokemon={pokemon}
-        />
+      {pokemonsDetails.map((pokemon) => (
+        <PokemonItem onSelectedPokemon={onSelectedPokemon} key={pokemon.name} pokemon={pokemon} />
       ))}
     </ul>
   );

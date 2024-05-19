@@ -1,15 +1,17 @@
 import { FC } from "react";
-import { IPokemon } from "../types/PokemonType";
+import { IPokemonResponceDetails } from "../types/PokemonType";
 
 interface IPokemonItem {
-  pokemon: IPokemon;
+  pokemon: IPokemonResponceDetails;
+  onSelectedPokemon: (pokemon: IPokemonResponceDetails) => void;
 }
 
-const PokemonItem: FC<IPokemonItem> = ({ pokemon }) => {
+const PokemonItem: FC<IPokemonItem> = ({ pokemon, onSelectedPokemon }) => {
   return (
-    <li className="bg-green-400 rounded-md overflow-hidden p-5">
+    <li onClick={() => onSelectedPokemon(pokemon)} className="bg-green-400 rounded-md overflow-hidden p-5">
       <h2 className="">{pokemon.name}</h2>
-      <a href={pokemon.url}>{pokemon.url}</a>
+      {/* <a href={pokemon.url}>{pokemon.url}</a> */}
+      <img src={pokemon.sprites?.front_default} alt={pokemon.name} />
     </li>
   );
 };
